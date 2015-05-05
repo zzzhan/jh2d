@@ -1,0 +1,29 @@
+{
+  "name": "jh2d",
+  "version": "0.1.0",
+  "authors": [
+    "zzzhan <chunzhan.he@gmail.com>"
+  ],
+  "description": "Jh2d - Easy draw on HTML5 convas",
+  "main": [
+    "src/jh2d.*.js"
+  ],
+  "keywords": [
+    "html5",
+    "convas",
+    "draw shape",
+    "diagram editor",
+    "online diagram"
+  ],
+  "license": "MIT",
+  "homepage": "https://github.com/zzzhan/jh2d",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+  }
+}
