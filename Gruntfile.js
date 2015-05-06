@@ -18,11 +18,11 @@ module.exports = function (grunt) {
     },
     uglify: {
       options: {
-        banner: '/*! <%= pkg.file %> <%= grunt.template.today("yyyy-mm-dd") %> */\n'
+        banner: '/*! <%= pkg.file %> <%= grunt.template.today("yyyy-mm-dd") %> */\n',
+        mangle: {toplevel: true},
+        squeeze: {dead_code: false},
+        codegen: {quote_keys: true}
       },
-	    mangle: {toplevel: true},
-	    squeeze: {dead_code: false},
-	    codegen: {quote_keys: true},
       build: {
 		    files: {
 			    'dist/<%= pkg.file %>.min.js':'temp/<%=pkg.file %>.js'
