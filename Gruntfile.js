@@ -20,48 +20,52 @@ module.exports = function (grunt) {
       options: {
         banner: '/*! <%= pkg.file %> <%= grunt.template.today("yyyy-mm-dd") %> */\n'
       },
-	  mangle: {toplevel: true},
-	  squeeze: {dead_code: false},
-	  codegen: {quote_keys: true},
+	    mangle: {toplevel: true},
+	    squeeze: {dead_code: false},
+	    codegen: {quote_keys: true},
       build: {
-		files: {
-			'dist/<%= pkg.file %>.min.js':'temp/<%=pkg.file %>.js'
-		}
+		    files: {
+			    'dist/<%= pkg.file %>.min.js':'temp/<%=pkg.file %>.js'
+		    }
       }
     },
     jshint: {
       options: {
-        curly: true,
-        eqeqeq: true,
-        immed: true,
-        latedef: false,
-        newcap: true,
-        noarg: true,
-        sub: true,
-        undef: true,
-        unused: true,
-        boss: true,
-        eqnull: true,
-        browser: true,
-        globals: {
-          $ : true,
-          Modernizr : true,
-          console: true,
-          define: true,
-          module: true,
-          require: true
+        jshintrc: '.jshintrc'
+      },
+      all: [
+        'Gruntfile.js',
+        'src/<%=pkg.file %>.*.js'
+      ]
+	  },
+    clean: ['dist','temp'],
+    cipher: {
+      encrypt: {
+        options: {
+          pk:grunt.cli.options.pk||grunt.file.read('.pk')
         },
-        "-W099": true,
-      },
-      gruntfile: {
-        src: 'Gruntfile.js'
-      },
-      js: {
-        src: 'src/<%=pkg.file %>.*.js'
+        files: [{
+          expand:true,
+          cwd:'src/',
+          src:['*.js'],
+          dest:'cipher/'
+        }]
+      },      
+      decrypt: {
+        options: {
+          pk:grunt.cli.options.pk||grunt.file.read('.pk'),
+          method:'decrypt'
+        },
+        files: [{
+          expand:true,
+          cwd:'cipher/',
+          src:['*.js'],
+          dest:'src/'
+        }]
       }
-	},
-    clean: ['dist','temp']
+    }
   });
   require('matchdep').filterDev('grunt-*').forEach(grunt.loadNpmTasks);
-  grunt.registerTask('default', ['jshint', 'clean', 'concat', 'uglify']);
+  grunt.registerTask('decrypt', ['cipher:decrypt']);
+  grunt.registerTask('default', ['jshint', 'clean', 'concat', 'uglify', 'cipher:encrypt']);
 };
