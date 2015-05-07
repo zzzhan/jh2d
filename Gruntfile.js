@@ -40,10 +40,10 @@ module.exports = function (grunt) {
 	  },
     clean: ['dist','temp'],
     cipher: {
+      options: {
+        pk:grunt.cli.options.pk||grunt.file.read('.pk')
+      },
       encrypt: {
-        options: {
-          pk:grunt.cli.options.pk||grunt.file.read('.pk')
-        },
         files: [{
           expand:true,
           cwd:'src/',
@@ -53,7 +53,6 @@ module.exports = function (grunt) {
       },      
       decrypt: {
         options: {
-          pk:grunt.cli.options.pk||grunt.file.read('.pk'),
           method:'decrypt'
         },
         files: [{
