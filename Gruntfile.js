@@ -7,11 +7,11 @@ module.exports = function (grunt) {
       },
       js:{
         src: [
-          "src/jh2d.core.js",
-          "src/jh2d.base.js",
           "src/jh2d.dashedLine.js",
           "src/jh2d.dashedBezier.js",
           "src/jh2d.dashedOval.js",
+          "src/jh2d.core.js",
+          "src/jh2d.base.js",
           "src/*.js"
         ],
         dest: "temp/jh2d.js"
