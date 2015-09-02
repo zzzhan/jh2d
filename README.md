@@ -1,6 +1,6 @@
 # JH2D
 
-Pure javascript draw engine for HTML5.
+Independent javascript engine for drawing ready-made shapes on canvas of HTML5.
 
 **[homepage](http://zzzhan.github.io/jh2d/)**
 
